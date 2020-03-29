@@ -95,14 +95,14 @@ public class HotelController {
     }
 
     @ApiOperation(value = "分页查询酒店(游客)", notes = "根据所在城市和酒店名模糊(选填)分页查询酒店")
-    @PostMapping(value = "/queryByPage")
+//    @WebLog
+    @GetMapping(value = "/queryByPage")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "cityCode", value = "城市编码", paramType = "query", dataType = "String"),
             @ApiImplicitParam(name = "hotelName", value = "酒店名", paramType = "query", dataType = "String", defaultValue = "酒店名"),
             @ApiImplicitParam(name = "pageNo", value = "页码", required = true, paramType = "query", dataType = "Integer", defaultValue = "1"),
             @ApiImplicitParam(name = "pageSize", value = "每页记录数", required = true, paramType = "query", dataType = "Integer", defaultValue = "10")
     })
-    @WebLog
     public Result queryByPage(@RequestParam(required = false) String cityCode, @RequestParam(required = false) String hotelName, @RequestParam Integer pageNo, @RequestParam Integer pageSize) {
         return hotelService.queryByPage(cityCode, hotelName, pageNo, pageSize);
     }

@@ -173,7 +173,7 @@ public class ArticleController {
 
     @ApiOperation(value = "分页查询攻略", notes = "分页查询攻略")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "cityCode", value = "城市编号（非必传）", paramType = "query", dataType = "String", defaultValue = "城市编号（非必传）"),
+            @ApiImplicitParam(name = "cityName", value = "城市名称（非必传）", paramType = "query", dataType = "String", defaultValue = "城市名称（非必传）"),
             @ApiImplicitParam(name = "type", value = "查询类型（0-最新 1-点赞数）", paramType = "query", dataType = "Integer", defaultValue = "查询类型（0-最新 1-点赞数）"),
             @ApiImplicitParam(name = "status", value = "审核状态（游客传1，表示已审核的攻略，不传全部攻略，0表示未审核攻略）", paramType = "query", dataType = "Integer", defaultValue = "审核状态（游客传1，表示已审核的攻略，不传全部攻略，0表示未审核攻略）"),
             @ApiImplicitParam(name = "pageNo", value = "页码", required = true, paramType = "query", dataType = "Integer", defaultValue = "1"),
@@ -182,8 +182,8 @@ public class ArticleController {
     @WebLog
     @GetMapping(value = "/queryArticleByPage")
 //    @UserLoginToken
-    public Result queryArticleByPage(@RequestParam(required = false) String cityCode, @RequestParam Integer type, @RequestParam(required = false) Integer status, @RequestParam Integer pageNo, @RequestParam Integer pageSize) {
-        return articleService.queryArticleByPage(cityCode, type, status, pageNo, pageSize);
+    public Result queryArticleByPage(@RequestParam(required = false) String cityName, @RequestParam Integer type, @RequestParam(required = false) Integer status, @RequestParam Integer pageNo, @RequestParam Integer pageSize) {
+        return articleService.queryArticleByPage(cityName, type, status, pageNo, pageSize);
     }
 
 }

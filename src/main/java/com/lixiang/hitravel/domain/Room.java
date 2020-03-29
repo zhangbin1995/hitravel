@@ -23,6 +23,9 @@ public class Room {
     // 所属酒店
     private Integer hotelId;
 
+    // 所属酒店名称
+    private String hotelName;
+
     // 房间类型
     private String roomName;
 

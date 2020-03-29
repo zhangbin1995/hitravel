@@ -47,7 +47,7 @@ public class ArticleServiceImpl implements ArticleService {
             article.setCreateTime(new Date());
             int res = articleMapper.insert(article);
             if (res > 0) {
-                return Result.success("添加成功");
+                return Result.success(article);
             } else {
                 return Result.error(CodeMsg.ERROR, "添加失败");
             }
@@ -200,13 +200,13 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
-    public Result queryArticleByPage(String cityCode, Integer type, Integer status, Integer pageNo, Integer pageSize) {
+    public Result queryArticleByPage(String cityName, Integer type, Integer status, Integer pageNo, Integer pageSize) {
         try {
             IPage<Article> page = new Page<>(pageNo, pageSize);
             QueryWrapper<Article> wrapper = new QueryWrapper<>();
             Article temp = new Article();
-            if (!Strings.isNullOrEmpty(cityCode)) {
-                temp.setCityCode(cityCode);
+            if (!Strings.isNullOrEmpty(cityName)) {
+                temp.setCityName(cityName);
             }
             if (status != null) {
                 temp.setStatus(status);

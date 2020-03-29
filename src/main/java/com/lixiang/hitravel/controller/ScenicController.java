@@ -1,6 +1,5 @@
 package com.lixiang.hitravel.controller;
 
-import com.lixiang.hitravel.domain.Hotel;
 import com.lixiang.hitravel.domain.Scenic;
 import com.lixiang.hitravel.dto.ScenicDto;
 import com.lixiang.hitravel.result.Result;

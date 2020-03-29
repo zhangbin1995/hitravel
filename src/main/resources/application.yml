@@ -27,8 +27,8 @@ spring:
     time-zone: GMT+8
   #redis
   redis:
-#    host: 101.132.138.185
-    host: 127.0.0.1
+    host: 101.132.138.185
+#    host: 127.0.0.1
     port: 6379
     #    password: xxxx
     timeout: 3

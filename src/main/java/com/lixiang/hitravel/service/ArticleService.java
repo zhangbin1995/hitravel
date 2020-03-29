@@ -46,7 +46,7 @@ public interface ArticleService {
     Result myCollection(Integer userId);
 
     // 分页查询攻略文章
-    Result queryArticleByPage(String cityCode, Integer type, Integer status, Integer pageNo, Integer pageSize);
+    Result queryArticleByPage(String cityName, Integer type, Integer status, Integer pageNo, Integer pageSize);
 
     // 查看某一篇攻略
     Result queryArticleById(Integer articleId);

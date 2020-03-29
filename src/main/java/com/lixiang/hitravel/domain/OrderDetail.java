@@ -18,6 +18,10 @@ public class OrderDetail {
     // 订单详情表主键id
     @TableId(type = IdType.AUTO)
     private Integer orderDetailId;
+    // 所属订单
+    private Integer orderId;
+    // 订单所属用户
+    private Integer userId;
     // 订单类型 0 酒店 1 景区
     private Integer orderType;
     // 酒店/景区 id
@@ -36,4 +40,6 @@ public class OrderDetail {
     private String bookTime;
     // 创建时间
     private Date createTime;
+    // 订单状态 0 已预订 1 已取消
+    private Integer status;
 }

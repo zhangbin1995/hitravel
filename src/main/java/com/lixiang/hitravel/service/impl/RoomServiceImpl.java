@@ -3,9 +3,11 @@ package com.lixiang.hitravel.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.lixiang.hitravel.domain.Hotel;
 import com.lixiang.hitravel.domain.OrderDetail;
 import com.lixiang.hitravel.domain.Room;
 import com.lixiang.hitravel.exception.GlobalException;
+import com.lixiang.hitravel.mapper.HotelMapper;
 import com.lixiang.hitravel.mapper.OrderDetailMapper;
 import com.lixiang.hitravel.mapper.RoomMapper;
 import com.lixiang.hitravel.result.CodeMsg;
@@ -33,12 +35,20 @@ public class RoomServiceImpl implements RoomService {
     private RoomMapper roomMapper;
 
     @Autowired
+    private HotelMapper hotelMapper;
+
+    @Autowired
     private OrderDetailMapper orderDetailMapper;
 
     @Override
     @Transactional
     public Result save(Room room) {
         try {
+            Hotel hotel = hotelMapper.selectById(room.getHotelId());
+            if (hotel == null) {
+                throw new GlobalException("所属酒店不存在或未传酒店Id");
+            }
+            room.setHotelName(hotel.getHotelName());
             int res = roomMapper.insert(room);
             if (res > 0) {
                 return Result.success("房间注册成功");

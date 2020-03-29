@@ -19,11 +19,11 @@ public class Order {
     @TableId(type = IdType.AUTO)
     private Integer orderId;
     // 订单所属用户
-    private String userId;
+    private Integer userId;
     // 订单总金额
     private BigDecimal amount;
     // 创建日期
     private Date createTime;
-    // 订单状态 0 未支付 1 已支付 2 已取消
+    // 订单状态 0 已预订 1 已取消
     private Integer status;
 }

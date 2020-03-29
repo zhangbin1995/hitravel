@@ -132,6 +132,7 @@ public class ScenicServiceImpl implements ScenicService {
             if (status != null) {
                 temp.setStatus(status);
             }
+            wrapper.setEntity(temp);
             IPage<Scenic> page = new Page<>(pageNo, pageSize);
             return Result.success(scenicMapper.selectPage(page, wrapper));
 

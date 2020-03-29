@@ -21,6 +21,9 @@ public class Ticket {
     // 所属景区
     private Integer scenicId;
 
+    // 所属景区名称
+    private String scenicName;
+
     // 门票名称
     private String ticketName;
 

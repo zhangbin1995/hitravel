@@ -3,8 +3,10 @@ package com.lixiang.hitravel.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.lixiang.hitravel.domain.Scenic;
 import com.lixiang.hitravel.domain.Ticket;
 import com.lixiang.hitravel.exception.GlobalException;
+import com.lixiang.hitravel.mapper.ScenicMapper;
 import com.lixiang.hitravel.mapper.TicketMapper;
 import com.lixiang.hitravel.result.CodeMsg;
 import com.lixiang.hitravel.result.Result;
@@ -26,9 +28,17 @@ public class TicketServiceImpl implements TicketService {
     @Autowired
     private TicketMapper ticketMapper;
 
+    @Autowired
+    private ScenicMapper scenicMapper;
+
     @Override
     public Result save(Ticket ticket) {
         try {
+            Scenic scenic = scenicMapper.selectById(ticket.getScenicId());
+            if (scenic == null) {
+                throw new GlobalException("所属景区信息错误");
+            }
+            ticket.setScenicName(scenic.getScenicName());
             int res = ticketMapper.insert(ticket);
             if (res > 0) {
                 return Result.success("新增门票成功");
@@ -36,6 +46,7 @@ public class TicketServiceImpl implements TicketService {
                 return Result.success("新增门票失败");
             }
         } catch (GlobalException e) {
+            log.info("新增门票错误：" + e.getMessage());
             return Result.error(CodeMsg.SERVER_ERROR, "新增门票错误：" + e.getMessage());
         }
     }
