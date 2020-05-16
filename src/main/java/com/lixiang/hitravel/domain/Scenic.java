@@ -8,7 +8,7 @@ import lombok.Data;
 import java.util.Date;
 
 /**
- * @author binzhang
+ * @author zhang
  * @date 2020-01-20
  */
 @Data

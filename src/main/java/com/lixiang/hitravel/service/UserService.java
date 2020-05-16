@@ -6,7 +6,7 @@ import com.lixiang.hitravel.domain.User;
 import com.lixiang.hitravel.result.Result;
 
 /**
- * @author binzhang
+ * @author zhang
  * @date 2020-01-16
  */
 public interface UserService {

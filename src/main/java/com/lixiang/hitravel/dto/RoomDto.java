@@ -10,7 +10,7 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 
 /**
- * @author binzhang
+ * @author zhang
  * @date 2020-01-20
  */
 @Data
@@ -26,7 +26,7 @@ public class RoomDto {
     private String roomName;
 
     @ApiModelProperty(value = "房间数量",example="房间数量")
-    private String roomNumber;
+    private Integer roomNumber;
 
     @ApiModelProperty(value = "是否在售 0-不在售 1-在售",example="是否在售 0-不在售 1-在售")
     private Integer status;

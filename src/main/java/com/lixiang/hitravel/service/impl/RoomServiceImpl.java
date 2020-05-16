@@ -23,7 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author binzhang
+ * @author zhang
  * @date 2020-01-22
  */
 @Service
@@ -120,10 +120,11 @@ public class RoomServiceImpl implements RoomService {
         try {
             // 先查询出该酒店下所有房间
             QueryWrapper<Room> wrapper = new QueryWrapper<>();
+            IPage<Room> page = new Page<>(pageNo, pageSize);
             Room temp = new Room();
             temp.setHotelId(hotelId);
             wrapper.setEntity(temp);
-            List<Room> roomList = roomMapper.selectList(wrapper);
+            List<Room> roomList = roomMapper.selectPage(page, wrapper).getRecords();
             List<Room> resList = new ArrayList<>();
             for (Room r : roomList) {
                 // 根据房间Id 和 时间查询出改天已经被订的房间

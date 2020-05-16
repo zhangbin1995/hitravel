@@ -6,7 +6,7 @@ import com.lixiang.hitravel.domain.Room;
 import com.lixiang.hitravel.result.Result;
 
 /**
- * @author binzhang
+ * @author zhang
  * @date 2020-01-22
  */
 public interface RoomService {

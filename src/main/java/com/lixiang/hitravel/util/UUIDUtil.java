@@ -3,7 +3,7 @@ package com.lixiang.hitravel.util;
 import java.util.UUID;
 
 /**
- * @author binzhang
+ * @author zhang
  * @date 2019-12-09
  */
 public class UUIDUtil {

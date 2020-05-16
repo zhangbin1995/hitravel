@@ -3,7 +3,7 @@ package com.lixiang.hitravel.service;
 import com.lixiang.hitravel.result.Result;
 
 /**
- * @author binzhang
+ * @author zhang
  * @date 2020-01-28
  */
 public interface AreaService {

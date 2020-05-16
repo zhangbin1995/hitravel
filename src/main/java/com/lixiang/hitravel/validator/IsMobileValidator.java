@@ -7,7 +7,7 @@ import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
 /**
- * @author binzhang
+ * @author zhang
  * @date 2019-12-09
  */
 public class IsMobileValidator implements ConstraintValidator<IsMobile, String> {

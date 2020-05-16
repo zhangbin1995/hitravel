@@ -26,7 +26,7 @@ import java.util.List;
 
 
 /**
- * @author binzhang
+ * @author zhang
  * @date 2020-03-07
  */
 @Service
@@ -194,6 +194,7 @@ public class OrderServiceImpl implements OrderService {
                 return Result.error(CodeMsg.ERROR, "当前用户为空");
             }
             QueryWrapper<OrderDetail> wrapper = new QueryWrapper<>();
+            wrapper.orderByDesc("create_time");
             IPage<OrderDetail> page = new Page<>(pageNo, pageSize);
             OrderDetail temp = new OrderDetail();
             temp.setUserId(user.getUserId());
@@ -215,6 +216,7 @@ public class OrderServiceImpl implements OrderService {
     public Result myOrderForStore(Integer hotelOrScenicId, Integer status, Integer orderType, Integer pageNo, Integer pageSize) {
         try {
             QueryWrapper<OrderDetail> wrapper = new QueryWrapper<>();
+            wrapper.orderByDesc("create_time");
             IPage<OrderDetail> page = new Page<>(pageNo, pageSize);
             OrderDetail temp = new OrderDetail();
             temp.setHotelOrScenicId(hotelOrScenicId);

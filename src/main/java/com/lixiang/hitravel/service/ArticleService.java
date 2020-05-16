@@ -4,10 +4,11 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.lixiang.hitravel.domain.Article;
 import com.lixiang.hitravel.domain.User;
+import com.lixiang.hitravel.dto.GoodsForArticleDto;
 import com.lixiang.hitravel.result.Result;
 
 /**
- * @author binzhang
+ * @author zhang
  * @date 2020-01-16
  */
 public interface ArticleService {
@@ -53,4 +54,13 @@ public interface ArticleService {
 
     // 删除攻略
     Result deleteById(Integer articleId);
+
+    // 关键字搜索
+    Result queryArticleByKeyWords(String keyWords, Integer pageNo, Integer pageSize);
+
+    // 添加攻略相关商品
+    Result addGoods(User user, GoodsForArticleDto goodsForArticleDto);
+
+    // 查看某攻略下的商品
+    Result queryArticleGoodsById(Integer articleId);
 }

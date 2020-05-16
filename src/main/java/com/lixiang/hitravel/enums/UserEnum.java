@@ -1,7 +1,7 @@
 package com.lixiang.hitravel.enums;
 
 /**
- * @author binzhang
+ * @author zhang
  * @date 2020-01-16
  */
 public enum UserEnum {

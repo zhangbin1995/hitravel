@@ -3,6 +3,8 @@ package com.lixiang.hitravel.controller;
 import com.lixiang.hitravel.domain.Article;
 import com.lixiang.hitravel.domain.User;
 import com.lixiang.hitravel.dto.ArticleDto;
+import com.lixiang.hitravel.dto.GoodsForArticleDto;
+import com.lixiang.hitravel.dto.OrderDto;
 import com.lixiang.hitravel.redis.RedisService;
 import com.lixiang.hitravel.redis.UserKey;
 import com.lixiang.hitravel.result.CodeMsg;
@@ -20,9 +22,10 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import java.util.List;
 
 /**
- * @author binzhang
+ * @author zhang
  * @date 2020-02-17
  */
 @RestController
@@ -69,6 +72,18 @@ public class ArticleController {
         return articleService.deleteById(articleId);
     }
 
+    @ApiOperation(value = "关键字搜索攻略", notes = "关键字搜索攻略")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "keyWords", value = "关键字", paramType = "query", dataType = "String", defaultValue = "关键字"),
+            @ApiImplicitParam(name = "pageNo", value = "页码", required = true, paramType = "query", dataType = "Integer", defaultValue = "1"),
+            @ApiImplicitParam(name = "pageSize", value = "每页记录数", required = true, paramType = "query", dataType = "Integer", defaultValue = "10")
+    })
+    @GetMapping(value = "/queryArticleByKeyWords")
+    public Result queryArticleByKeyWords(@RequestParam String keyWords, @RequestParam Integer pageNo, @RequestParam Integer pageSize) {
+        return articleService.queryArticleByKeyWords(keyWords, pageNo, pageSize);
+    }
+
+
     @ApiOperation(value = "查看某一篇攻略", notes = "查看某一篇攻略")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "articleId", value = "攻略id", paramType = "query", dataType = "String", defaultValue = "攻略id")
@@ -77,6 +92,16 @@ public class ArticleController {
 //    @UserLoginToken
     public Result queryArticleById(@RequestParam Integer articleId) {
         return articleService.queryArticleById(articleId);
+    }
+
+    @ApiOperation(value = "查看某一篇攻略下的商品", notes = "查看某一篇攻略下的商品")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "articleId", value = "攻略id", paramType = "query", dataType = "String", defaultValue = "攻略id")
+    })
+    @GetMapping(value = "/queryArticleGoodsById")
+//    @UserLoginToken
+    public Result queryArticleGoodsById(@RequestParam Integer articleId) {
+        return articleService.queryArticleGoodsById(articleId);
     }
 
     @ApiOperation(value = "我发表的攻略（游客）", notes = "我发表的攻略（游客）")
@@ -94,6 +119,18 @@ public class ArticleController {
             return Result.error(CodeMsg.ERROR, "当前用户为空");
         }
         return articleService.queryMyArticle(status, pageNo, pageSize, user.getUserId());
+    }
+
+    @ApiOperation(value = "添加攻略相关商品", notes = "添加攻略相关商品")
+    @PostMapping(value = "/addGoods")
+    @UserLoginToken
+    public Result addGoods(HttpServletRequest request, @Valid @RequestBody GoodsForArticleDto goodsForArticleDto) {
+        String token = request.getHeader("token");// 从 http 请求头中取出 token
+        User user = redisService.get(UserKey.token, token, User.class);
+        if (user == null) {
+            return Result.error(CodeMsg.ERROR, "当前用户为空");
+        }
+        return articleService.addGoods(user, goodsForArticleDto);
     }
 
     @ApiOperation(value = "审核攻略（管理员）", notes = "审核攻略（管理员）")

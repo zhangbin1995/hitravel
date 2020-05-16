@@ -33,7 +33,7 @@ public class FileController {
         }
         String fileName = file.getOriginalFilename();  // 文件名
         String suffixName = fileName.substring(fileName.lastIndexOf("."));  // 后缀名
-//        String filePath = "D://temp-rainy//"; // 上传后的路径 /Users/binzhang/Desktop
+//        String filePath = "D://temp-rainy//"; // 上传后的路径 /Users/zhang/Desktop
         String filePath = "/images/"; // 上传后的路径
         fileName = UUID.randomUUID() + suffixName; // 新文件名
         System.out.println(filePath + fileName);

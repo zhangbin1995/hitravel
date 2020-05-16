@@ -4,25 +4,23 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.google.common.base.Strings;
-import com.lixiang.hitravel.domain.Article;
-import com.lixiang.hitravel.domain.Comment;
-import com.lixiang.hitravel.domain.User;
-import com.lixiang.hitravel.domain.UserArticleRef;
+import com.lixiang.hitravel.domain.*;
+import com.lixiang.hitravel.dto.GoodsDto;
+import com.lixiang.hitravel.dto.GoodsForArticleDto;
 import com.lixiang.hitravel.exception.GlobalException;
-import com.lixiang.hitravel.mapper.ArticleMapper;
-import com.lixiang.hitravel.mapper.CommentMapper;
-import com.lixiang.hitravel.mapper.UserArticleRefMapper;
+import com.lixiang.hitravel.mapper.*;
 import com.lixiang.hitravel.result.CodeMsg;
 import com.lixiang.hitravel.result.Result;
 import com.lixiang.hitravel.service.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 import java.util.List;
 
 /**
- * @author binzhang
+ * @author zhang
  * @date 2020-02-17
  */
 @Service
@@ -36,6 +34,15 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Autowired
     private UserArticleRefMapper userArticleRefMapper;
+
+    @Autowired
+    private ArticleGoodsRefMapper articleGoodsRefMapper;
+
+    @Autowired
+    private RoomMapper roomMapper;
+
+    @Autowired
+    private TicketMapper ticketMapper;
 
     @Override
     public Result save(Article article) {
@@ -242,6 +249,84 @@ public class ArticleServiceImpl implements ArticleService {
                 return Result.success("删除成功");
             }
             return Result.error(CodeMsg.ERROR, "删除失败");
+        } catch (GlobalException e) {
+            throw new GlobalException(e.getMessage());
+        }
+    }
+
+    @Override
+    public Result queryArticleByKeyWords(String keyWords, Integer pageNo, Integer pageSize) {
+        try {
+            IPage<Article> page = new Page<>(pageNo, pageSize);
+            QueryWrapper<Article> wrapper = new QueryWrapper<>();
+            wrapper.like("city_name", keyWords).or().like("title", keyWords).or().like("content", keyWords);
+            wrapper.orderByDesc("create_time");
+            return Result.success(articleMapper.selectPage(page, wrapper));
+        } catch (GlobalException e) {
+            throw new GlobalException(e.getMessage());
+        }
+    }
+
+    @Override
+    @Transactional
+    public Result addGoods(User user, GoodsForArticleDto goodsForArticleDto) {
+        try {
+            Integer articleId = goodsForArticleDto.getArticleId();
+            Article article = articleMapper.selectById(articleId);
+            if (article.getUserId() != user.getUserId()) {
+                throw new GlobalException("仅有作者可添加攻略商品！");
+            }
+            List<GoodsDto> goodsList = goodsForArticleDto.getGoodsList();
+            for (GoodsDto goodsDto : goodsList) {
+                ArticleGoods goods = new ArticleGoods();
+                goods.setArticleId(articleId);
+                goods.setGoodsId(goodsDto.getId());
+                goods.setType(goodsDto.getType());
+                // 根据类型判断预订的是票或酒店 0酒店 1景区
+                if (goodsDto.getType() == 0) {
+                    // 商品为酒店房间
+                    Room room = roomMapper.selectById(goodsDto.getId());
+                    if (room == null) {
+                        throw new GlobalException("查询房间信息错误!");
+                    }
+                    goods.setHotelOrScenicName(room.getHotelName());
+                    goods.setRoomOrTicketName(room.getRoomName());
+                    goods.setNormalPrice(room.getNormalPrice());
+                    goods.setSellPrice(room.getSellPrice());
+
+                } else {
+                    // 商品为景区门票
+                    Ticket ticket = ticketMapper.selectById(goodsDto.getId());
+                    if (ticket == null) {
+                        throw new GlobalException("查询门票信息错误!");
+                    }
+                    goods.setHotelOrScenicName(ticket.getScenicName());
+                    goods.setRoomOrTicketName(ticket.getTicketName());
+                    goods.setNormalPrice(ticket.getNormalPrice());
+                    goods.setSellPrice(ticket.getSellPrice());
+                }
+
+                int res = articleGoodsRefMapper.insert(goods);
+                if (res < 1) {
+                    throw new GlobalException("添加记录失败");
+                }
+            }
+
+            return Result.success("添加成功");
+        } catch (GlobalException e) {
+            throw new GlobalException(e.getMessage());
+        }
+    }
+
+    @Override
+    public Result queryArticleGoodsById(Integer articleId) {
+        try {
+            QueryWrapper<ArticleGoods> wrapper = new QueryWrapper<>();
+            ArticleGoods temp = new ArticleGoods();
+            temp.setArticleId(articleId);
+            wrapper.setEntity(temp);
+            return Result.success(articleGoodsRefMapper.selectList(wrapper));
+
         } catch (GlobalException e) {
             throw new GlobalException(e.getMessage());
         }

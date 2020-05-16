@@ -3,7 +3,7 @@ package com.lixiang.hitravel.util;
 import org.springframework.beans.BeanUtils;
 
 /**
- * @author binzhang
+ * @author zhang
  * @date 2020-01-19
  */
 public class MyBeanUtils<Dto, Vo> {

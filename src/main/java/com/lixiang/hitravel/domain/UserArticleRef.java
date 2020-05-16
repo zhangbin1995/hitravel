@@ -7,7 +7,7 @@ import lombok.Data;
 
 /**
  * 用户攻略关联表
- * @author binzhang
+ * @author zhang
  * @date 2020-02-18
  */
 @Data

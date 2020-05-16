@@ -4,7 +4,7 @@ import com.lixiang.hitravel.result.CodeMsg;
 import lombok.Getter;
 
 /**
- * @author binzhang
+ * @author zhang
  * @date 2019-12-09
  */
 @Getter

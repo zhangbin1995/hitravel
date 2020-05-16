@@ -1,8 +1,11 @@
+server:
+  port: 8080
+
 spring:
   # druid
   datasource:
     url: jdbc:mysql://101.132.138.185:3306/hitravel?useUnicode=true&characterEncoding=utf-8&serverTimezone=GMT%2B8
-    username: zhangbin
+    username: root
     password: 1234
     # 使用druid数据源
     type: com.alibaba.druid.pool.DruidDataSource
@@ -27,8 +30,8 @@ spring:
     time-zone: GMT+8
   #redis
   redis:
-    host: 101.132.138.185
-#    host: 127.0.0.1
+#    host: 101.132.138.185
+    host: 127.0.0.1
     port: 6379
     #    password: xxxx
     timeout: 3
@@ -46,8 +49,7 @@ spring:
 #    map-underscore-to-camel-case: true # 下划线转驼峰
 #    default-fetch-size: 100
 #    default-statement-timeout: 30
-#  mapper-locations: classpath:com/herobin/miaosha/dao/*.xml
-
+#  mapper-locations: classpath:com/zhang/miaosha/dao/*.xml
 
 
 

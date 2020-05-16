@@ -9,7 +9,7 @@ import redis.clients.jedis.JedisPoolConfig;
 import java.util.HashMap;
 
 /**
- * @author binzhang
+ * @author zhang
  * @date 2019-12-08
  */
 @Service

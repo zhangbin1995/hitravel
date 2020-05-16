@@ -1,7 +1,7 @@
 package com.lixiang.hitravel.interceptor;
 
 /**
- * @author binzhang
+ * @author zhang
  * @date 2020-02-08
  */
 

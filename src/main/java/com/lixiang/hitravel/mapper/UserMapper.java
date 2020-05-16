@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.lixiang.hitravel.domain.User;
 
 /**
- * @author binzhang
+ * @author zhang
  * @date 2020-01-16
  */
 public interface UserMapper extends BaseMapper<User> {

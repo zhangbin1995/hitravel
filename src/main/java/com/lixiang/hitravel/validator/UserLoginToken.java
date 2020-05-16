@@ -7,7 +7,7 @@ import java.lang.annotation.Target;
 
 /**
  * 用于登录后才能操作
- * @author binzhang
+ * @author zhang
  * @date 2019-12-09
  */
 @Target({ElementType.METHOD, ElementType.TYPE})

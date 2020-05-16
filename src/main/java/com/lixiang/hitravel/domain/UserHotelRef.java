@@ -9,7 +9,7 @@ import java.util.Date;
 
 /**
  * 用户酒店关联表
- * @author binzhang
+ * @author zhang
  * @date 2020-01-31
  */
 @Data

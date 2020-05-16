@@ -6,7 +6,7 @@ import lombok.Data;
 import java.math.BigDecimal;
 
 /**
- * @author binzhang
+ * @author zhang
  * @date 2020-01-20
  */
 @Data

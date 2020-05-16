@@ -3,7 +3,8 @@ package com.lixiang.hitravel.util;
 import org.apache.commons.codec.digest.DigestUtils;
 
 /**
- * @author binzhang
+ * 密码加密 MD5
+ * @author zhang
  * @date 2019-12-08
  */
 public class MD5Util {

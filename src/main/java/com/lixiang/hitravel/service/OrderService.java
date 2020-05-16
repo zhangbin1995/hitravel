@@ -6,7 +6,7 @@ import com.lixiang.hitravel.result.Result;
 import java.util.List;
 
 /**
- * @author binzhang
+ * @author zhang
  * @date 2020-03-07
  */
 public interface OrderService {

@@ -3,7 +3,7 @@ package com.lixiang.hitravel.result;
 import lombok.Data;
 
 /**
- * @author binzhang
+ * @author zhang
  * @date 2019-12-07
  */
 @Data

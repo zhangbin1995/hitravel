@@ -1,7 +1,7 @@
 package com.lixiang.hitravel.redis;
 
 /**
- * @author binzhang
+ * @author zhang
  * @date 2019-12-08
  */
 public interface KeyPrefix {

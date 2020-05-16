@@ -7,7 +7,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 /**
  * Token 拦截器
- * @author binzhang
+ * @author zhang
  * @date 2019-12-09
  */
 @Configuration

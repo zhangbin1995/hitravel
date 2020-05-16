@@ -7,7 +7,7 @@ import org.apache.ibatis.annotations.Select;
 import java.util.List;
 
 /**
- * @author binzhang
+ * @author zhang
  * @date 2020-02-17
  */
 public interface ArticleMapper extends BaseMapper<Article> {

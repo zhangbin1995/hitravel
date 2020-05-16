@@ -7,7 +7,7 @@ import com.lixiang.hitravel.domain.Scenic;
 import com.lixiang.hitravel.result.Result;
 
 /**
- * @author binzhang
+ * @author zhang
  * @date 2020-01-21
  */
 public interface ScenicService {

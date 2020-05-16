@@ -6,7 +6,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * @author binzhang
+ * @author zhang
  * @date 2019-12-09
  */
 public class ValidatorUtil {

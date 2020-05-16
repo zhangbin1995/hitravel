@@ -7,7 +7,7 @@ import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 
 /**
- * @author binzhang
+ * @author zhang
  * @date 2019-12-08
  */
 @Service

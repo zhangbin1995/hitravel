@@ -8,7 +8,7 @@ import org.apache.ibatis.annotations.Select;
 import java.util.List;
 
 /**
- * @author binzhang
+ * @author zhang
  * @date 2020-01-21
  */
 public interface HotelMapper extends BaseMapper<Hotel> {

@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.lixiang.hitravel.domain.Room;
 
 /**
- * @author binzhang
+ * @author zhang
  * @date 2020-01-21
  */
 public interface RoomMapper extends BaseMapper<Room> {

@@ -6,7 +6,7 @@ import java.io.File;
 import java.util.UUID;
 
 /**
- * @author binzhang
+ * @author zhang
  * @date 2020-01-17
  */
 public class FileUpload {

@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 /**
- * @author binzhang
+ * @author zhang
  * @date 2020-01-17
  */
 //Spring boot方式
