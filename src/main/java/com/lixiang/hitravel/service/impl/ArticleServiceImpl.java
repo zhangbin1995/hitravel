@@ -12,6 +12,8 @@ import com.lixiang.hitravel.mapper.*;
 import com.lixiang.hitravel.result.CodeMsg;
 import com.lixiang.hitravel.result.Result;
 import com.lixiang.hitravel.service.ArticleService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -25,6 +27,8 @@ import java.util.List;
  */
 @Service
 public class ArticleServiceImpl implements ArticleService {
+
+    private final Logger logger = LoggerFactory.getLogger(ArticleServiceImpl.class);
 
     @Autowired
     private ArticleMapper articleMapper;
@@ -59,6 +63,7 @@ public class ArticleServiceImpl implements ArticleService {
                 return Result.error(CodeMsg.ERROR, "添加失败");
             }
         } catch (GlobalException e) {
+            logger.error("error: " + e.getMessage());
             throw new GlobalException(e.getMessage());
         }
     }
